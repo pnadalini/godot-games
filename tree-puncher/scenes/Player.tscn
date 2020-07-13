@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://sprites/character/zombie_body.png" type="Texture" id=1]
+[ext_resource path="res://sprites/character/zombie_head.png" type="Texture" id=2]
+[ext_resource path="res://sprites/character/zombie_arm.png" type="Texture" id=3]
+[ext_resource path="res://sprites/character/zombie_leg.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Punch"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Arm:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0975133, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 110.0, 0.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32.6686, 89.3391 )
+
+[node name="Player" type="Area2D"]
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 5 )
+
+[node name="Head" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Body" type="Sprite" parent="."]
+position = Vector2( 0, 61.1597 )
+texture = ExtResource( 1 )
+
+[node name="Leg" type="Sprite" parent="."]
+position = Vector2( 0, 118.636 )
+texture = ExtResource( 4 )
+
+[node name="Arm" type="Sprite" parent="."]
+position = Vector2( 0, 38.0473 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 30 )
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+anims/Punch = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 57.9173 )
+shape = SubResource( 2 )

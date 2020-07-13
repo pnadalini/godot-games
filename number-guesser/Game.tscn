@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Title" type="RichTextLabel" parent="."]
+margin_left = 226.398
+margin_top = 36.3778
+margin_right = 761.398
+margin_bottom = 148.378
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0.203922, 0.717647, 0.0980392, 1 )
+text = "Number Guesser"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="RichTextLabel" parent="."]
+margin_left = 159.047
+margin_top = 131.138
+margin_right = 800.047
+margin_bottom = 344.138
+custom_fonts/normal_font = SubResource( 2 )
+text = "Any text"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Greater" type="Button" parent="."]
+margin_left = 678.474
+margin_top = 404.546
+margin_right = 931.474
+margin_bottom = 518.546
+custom_fonts/font = SubResource( 3 )
+text = "Greater"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lesser" type="Button" parent="."]
+margin_left = 82.8899
+margin_top = 404.546
+margin_right = 335.89
+margin_bottom = 518.546
+custom_fonts/font = SubResource( 3 )
+text = "Lesser"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Correct" type="Button" parent="."]
+margin_left = 383.986
+margin_top = 462.122
+margin_right = 636.986
+margin_bottom = 576.122
+custom_fonts/font = SubResource( 3 )
+text = "Correct"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Greater" to="." method="_on_Greater_pressed"]
+[connection signal="pressed" from="Lesser" to="." method="_on_Lesser_pressed"]
+[connection signal="pressed" from="Correct" to="." method="_on_Correct_pressed"]
