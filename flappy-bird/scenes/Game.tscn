@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://sprites/stage/background-day.png" type="Texture" id=1]
+[ext_resource path="res://sprites/stage/background-night.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Bird.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/Game.gd" type="Script" id=5]
+[ext_resource path="res://sprites/texts/message.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "flying"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bird:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 80, 240 ), Vector2( 80, 244 ), Vector2( 80, 240 ), Vector2( 80, 236 ), Vector2( 80, 240 ) ]
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="Node2D" parent="."]
+z_index = -5
+
+[node name="Day" type="TextureRect" parent="Background"]
+margin_right = 288.0
+margin_bottom = 512.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Night" type="TextureRect" parent="Background"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 232.0
+margin_bottom = 315.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bird" parent="." instance=ExtResource( 4 )]
+position = Vector2( 80, 240 )
+
+[node name="Base" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 456 )
+
+[node name="Base2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 336, 456 )
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "flying"
+anims/flying = SubResource( 1 )
+[connection signal="game_over" from="Bird" to="." method="_on_Bird_game_over"]
+[connection signal="game_start" from="Bird" to="." method="_on_Bird_game_start"]

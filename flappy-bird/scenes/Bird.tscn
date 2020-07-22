@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://sprites/bird/yellowbird-midflap.png" type="Texture" id=1]
+[ext_resource path="res://sprites/bird/yellowbird-upflap.png" type="Texture" id=2]
+[ext_resource path="res://sprites/bird/yellowbird-downflap.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Bird.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": false,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "flying",
+"speed": 5.0
+} ]
+
+[node name="Bird" type="KinematicBody2D" groups=[
+"Player",
+]]
+script = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, -12.0833, 6.91667, -11.875, 12.8333, -6.08333, 13.0417, -0.375, 16.9583, 1.83333, 16.9583, 3.91667, 13.125, 10.125, 3.5, 9.875, 2.95833, 11.8333, -6.75, 12, -7.58333, 9.95833, -10.6667, 10.125, -16.8333, 7, -16.75, -2.70833, -4.91667, -11.9583 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "flying"
+playing = true
