@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://sprites/bird/yellowbird-midflap.png" type="Texture" id=1]
 [ext_resource path="res://sprites/bird/yellowbird-upflap.png" type="Texture" id=2]
 [ext_resource path="res://sprites/bird/yellowbird-downflap.png" type="Texture" id=3]
 [ext_resource path="res://scripts/Bird.gd" type="Script" id=4]
+[ext_resource path="res://sprites/bird/bluebird-midflap.png" type="Texture" id=5]
+[ext_resource path="res://sprites/bird/redbird-downflap.png" type="Texture" id=6]
+[ext_resource path="res://sprites/bird/bluebird-downflap.png" type="Texture" id=7]
+[ext_resource path="res://sprites/bird/redbird-upflap.png" type="Texture" id=8]
+[ext_resource path="res://sprites/bird/redbird-midflap.png" type="Texture" id=9]
+[ext_resource path="res://sprites/bird/bluebird-upflap.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -12,10 +18,30 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "idle-blue",
+"speed": 1.0
+}, {
 "frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "flying",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "flying-blue",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 9 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "flying-red",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "idle-red",
+"speed": 1.0
 } ]
 
 [node name="Bird" type="KinematicBody2D" groups=[
@@ -28,5 +54,5 @@ polygon = PoolVector2Array( 0, -12.0833, 6.91667, -11.875, 12.8333, -6.08333, 13
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "flying"
+animation = "idle-red"
 playing = true

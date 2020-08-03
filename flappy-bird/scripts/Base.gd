@@ -7,15 +7,20 @@ const MAX_RANGE = 16
 const PIPES_PATH = "res://scenes/Pipes.tscn"
 
 onready var sprite = $Sprite
-onready var pipe1 = $Pipe1
-onready var pipe2 = $Pipe2
+onready var pipe1 := $Pipe1
+onready var pipe2 := $Pipe2
+
+var bird_position
+var parent
 
 var width
 var is_moving = true
 var show_pipes = false
 var game_started = false
+var score_added = 0
 
 func _ready():
+	parent = get_parent()
 	width = sprite.texture.get_size().x
 
 func _process(delta):
@@ -23,10 +28,17 @@ func _process(delta):
 		if position.x <= -width:
 			# Move the base to the back
 			position.x += width * 2 - move_speed * delta
+			score_added = 0
 			if game_started:
 				add_pipes()
 		else:
 			position.x -= move_speed * delta
+			if show_pipes && (position.x + pipe1.position.x < bird_position.x) && score_added == 0:
+				parent.add_score()
+				score_added += 1
+			if show_pipes && (position.x + pipe2.position.x < bird_position.x) && score_added == 1:
+				parent.add_score()
+				score_added += 1
 
 func stop_movement():
 	is_moving = false

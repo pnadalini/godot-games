@@ -50,7 +50,7 @@ mouse_click={
 
 [physics]
 
-2d/default_gravity=10
+2d/default_gravity=12
 
 [rendering]
 

@@ -9,20 +9,34 @@ const MAX_ROTATION = 90
 const MIN_FPS = 0
 const MAX_FPS = 20
 
-onready var rotate = $Rotate
 onready var sprite = $Sprite
 
 var is_playing = false
 var is_alive = true
+var idle = "idle"
+var flying = "flying"
 var velocity = Vector2()
 
 signal game_start
 signal game_over
+signal stop_platforms
 
 func _ready():
-	pass
+	randomize()
+	var rnd = rand_range(0, 100)
+	if rnd <= 50:
+		idle = "idle"
+		flying = "flying"
+	elif rnd >= 75:
+		idle = "idle-blue"
+		flying = "flying-blue"
+	else:
+		idle = "idle-red"
+		flying = "flying-red"
+	sprite.set_animation(flying)
+	sprite.get_sprite_frames().set_animation_speed(flying, 5)
 
-func _process(delta):
+func _process(_delta):
 	if is_playing:
 		velocity.y += gravity
 		
@@ -34,10 +48,10 @@ func _process(delta):
 		rotation_degrees = clamp(velocity.y / new_divider, MIN_ROTATION, MAX_ROTATION)		
 		
 		if velocity.y < 50 and is_alive:
-			sprite.set_animation("flying")
-			sprite.get_sprite_frames().set_animation_speed("flying", velocity.y / (-DIVIDER / 2))
+			sprite.set_animation(flying)
+			sprite.get_sprite_frames().set_animation_speed(flying, clamp(velocity.y / (-DIVIDER / 2), 0, 9999999999))
 		else:
-			sprite.set_animation("idle")
+			sprite.set_animation(idle)
 		
 		for i in get_slide_count():
 			var collision := get_slide_collision(i)
@@ -49,6 +63,7 @@ func _process(delta):
 				_end_game()
 				if rotation_degrees == MAX_ROTATION and !is_alive:
 					is_playing = false
+					emit_signal("game_over")
 		
 		move_and_slide(velocity, Vector2.UP)
 
@@ -59,13 +74,11 @@ func start_game() -> void:
 	emit_signal("game_start")
 
 func _end_game():
-	sprite.set_animation("idle")
+	sprite.set_animation(idle)
 	is_alive = false
-	emit_signal("game_over")
+	emit_signal("stop_platforms")
 
 func _fly():
 	velocity.y = -JUMP_SPEED
 	if position.y < 0:
 		velocity.y = 0
-
-
