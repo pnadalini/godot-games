@@ -5,7 +5,7 @@
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Levels/Level02.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/Level01.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -34,7 +34,7 @@ points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 } ]
 0/z_index = 0
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="Level01" type="Node2D"]
 __meta__ = {
 "_edit_vertical_guides_": [ 4720.0 ]
 }
@@ -63,7 +63,7 @@ tile_data = PoolIntArray( 65535, 0, 0, 0, 0, 0, 56, 0, 0, 57, 0, 0, 58, 0, 0, 13
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 262, 283 )
 
-[node name="Camera2D" parent="Player" index="3"]
+[node name="Camera2D" parent="Player" index="0"]
 limit_right = 4720
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
@@ -73,14 +73,14 @@ position = Vector2( 2898, 689 )
 position = Vector2( 4007, 689 )
 
 [node name="Portal2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 944, 872 )
+position = Vector2( 2012, 754 )
 next_scene = ExtResource( 6 )
 
 [node name="Coin" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1213, 855 )
+position = Vector2( 1268, 811 )
 
 [node name="Coin2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1301, 787 )
+position = Vector2( 1356, 743 )
 
 [node name="Coin3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1460, 689 )

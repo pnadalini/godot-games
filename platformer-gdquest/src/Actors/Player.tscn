@@ -12,7 +12,21 @@ extents = Vector2( 45, 42 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
 script = ExtResource( 2 )
-speed = Vector2( 800, 1000 )
+speed = Vector2( 800, 1350 )
+stomp_impulse = 1400.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -223 )
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+drag_margin_h_enabled = true
+smoothing_enabled = true
+smoothing_speed = 7.0
+drag_margin_left = 0.0
+drag_margin_right = 0.0
 
 [node name="player" type="Sprite" parent="."]
 position = Vector2( 0, -48 )
@@ -31,18 +45,5 @@ collision_mask = 2
 modulate = Color( 0.462745, 0.576471, 0.968627, 1 )
 position = Vector2( 0, -41 )
 shape = SubResource( 2 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -222 )
-current = true
-limit_left = 0
-limit_top = 0
-limit_smoothed = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 7.0
-drag_margin_left = 0.0
-drag_margin_right = 0.0
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
