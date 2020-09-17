@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UserInterface/UserInterface.gd" type="Script" id=3]
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=6]
+[ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Screens/EndScreen.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
@@ -35,6 +40,18 @@ __meta__ = {
 "_edit_vertical_guides_": [ 4720.0, 8182.0 ]
 }
 
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" type="Control" parent="UserInterface" instance=ExtResource( 5 )]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CanvasModulate" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -61,5 +78,9 @@ position = Vector2( 262, 283 )
 
 [node name="Camera2D" parent="Player" index="0"]
 limit_right = 8180
+
+[node name="Portal2D" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1338, 792 )
+next_scene = ExtResource( 8 )
 
 [editable path="Player"]

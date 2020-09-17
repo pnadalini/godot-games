@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Levels/Level01.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UserInterface/UserInterface.gd" type="Script" id=8]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
@@ -34,9 +37,21 @@ points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 } ]
 0/z_index = 0
 
-[node name="Level01" type="Node2D"]
+[node name="LevelTemplate" type="Node2D"]
 __meta__ = {
 "_edit_vertical_guides_": [ 4720.0 ]
+}
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" type="Control" parent="UserInterface" instance=ExtResource( 9 )]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 10 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="CanvasModulate" type="CanvasLayer" parent="."]
