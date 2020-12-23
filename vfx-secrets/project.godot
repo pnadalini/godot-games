@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "LaserBeam2D",
 "language": "GDScript",
 "path": "res://src/LaserBeam/LaserBeam.gd"
+}, {
+"base": "Line2D",
+"class": "Trail2D",
+"language": "GDScript",
+"path": "res://src/Trail/Trail2D.gd"
 } ]
 _global_script_class_icons={
-"LaserBeam2D": ""
+"LaserBeam2D": "",
+"Trail2D": ""
 }
 
 [application]
