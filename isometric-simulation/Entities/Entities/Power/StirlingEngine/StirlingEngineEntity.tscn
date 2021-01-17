@@ -41,7 +41,7 @@ region_enabled = true
 region_rect = Rect2( 449, 149, 102, 62 )
 
 [node name="PistonBack" type="Sprite" parent="."]
-position = Vector2( 0, -55.091 )
+position = Vector2( 0, -51.431 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 780, 139, 100, 27 )
@@ -53,7 +53,7 @@ region_enabled = true
 region_rect = Rect2( 584, 119, 52, 70 )
 
 [node name="PistonFront" type="Sprite" parent="."]
-position = Vector2( 0, -26.1135 )
+position = Vector2( 0, -22.3249 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 669, 164, 102, 37 )
