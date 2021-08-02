@@ -23,17 +23,53 @@ _global_script_classes=[ {
 "class": "EntityTracker",
 "language": "GDScript",
 "path": "res://Systems/EntityTracker.gd"
+}, {
+"base": "Node",
+"class": "PowerReceiver",
+"language": "GDScript",
+"path": "res://Systems/Power/PowerReceiver.gd"
+}, {
+"base": "Node",
+"class": "PowerSource",
+"language": "GDScript",
+"path": "res://Systems/Power/PowerSource.gd"
+}, {
+"base": "Node",
+"class": "PowerSystem",
+"language": "GDScript",
+"path": "res://Systems/Power/PowerSystem.gd"
+}, {
+"base": "Reference",
+"class": "Types",
+"language": "GDScript",
+"path": "res://Shared/Types.gd"
+}, {
+"base": "BlueprintEntity",
+"class": "WireBlueprint",
+"language": "GDScript",
+"path": "res://Entities/Entities/Blueprints/WireBlueprint.gd"
+}, {
+"base": "Entity",
+"class": "WireEntity",
+"language": "GDScript",
+"path": "res://Entities/Entities/Power/Wire/WireEntity.gd"
 } ]
 _global_script_class_icons={
 "BlueprintEntity": "",
 "Entity": "",
-"EntityTracker": ""
+"EntityTracker": "",
+"PowerReceiver": "",
+"PowerSource": "",
+"PowerSystem": "",
+"Types": "",
+"WireBlueprint": "",
+"WireEntity": ""
 }
 
 [application]
 
 config/name="Isometric-simulation"
-run/main_scene="res://Simulation.tscn"
+run/main_scene="res://Systems/Simulation.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -134,12 +170,12 @@ rotate_blueprint={
 }
 left_click={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 right_click={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 drop={
