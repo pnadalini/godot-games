@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Systems/Power/PowerSource.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "PowerSystem",
 "language": "GDScript",
 "path": "res://Systems/Power/PowerSystem.gd"
@@ -44,10 +44,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Shared/Types.gd"
 }, {
-"base": "BlueprintEntity",
+"base": "Reference",
 "class": "WireBlueprint",
 "language": "GDScript",
-"path": "res://Entities/Entities/Blueprints/WireBlueprint.gd"
+"path": "res://Entities/Blueprints/WireBlueprint.gd"
 }, {
 "base": "Entity",
 "class": "WireEntity",

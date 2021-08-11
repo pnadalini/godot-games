@@ -13,13 +13,15 @@ var _current_deconstruct_location := Vector2.ZERO
 
 onready var Library := {
 	"StirlingEngine": preload("res://Entities/Entities/Power/StirlingEngine/StirlingEngineBlueprint.tscn").instance(),
-	"Wire": preload("res://Entities/Entities/Blueprints/WireBlueprint.tscn").instance()
+	"Wire": preload("res://Entities/Blueprints/WireBlueprint.tscn").instance(),
+	"Battery": preload("res://Entities/Blueprints/BatteryBlueprint.tscn").instance(),
 }
 onready var _deconstruct_timer := $Timer
 
 func _ready() -> void:
 	Library[Library.StirlingEngine] = preload("res://Entities/Entities/Power/StirlingEngine/StirlingEngineEntity.tscn")
 	Library[Library.Wire] = preload("res://Entities/Entities/Power/Wire/WireEntity.tscn")
+	Library[Library.Battery] = preload("res://Entities/Entities/Power/Battery/BatteryEntity.tscn")
 
 func _process(_delta: float) -> void:
 	var has_placeable_blueprint: bool = _blueprint and _blueprint.placeable
@@ -30,6 +32,7 @@ func _process(_delta: float) -> void:
 func _exit_tree() -> void:
 	Library.StirlingEngine.queue_free()
 	Library.Wire.queue_free()
+	Library.Battery.queue_free()
 	
 func setup(tracker: EntityTracker, ground: TileMap, flat_entities: YSort, player: KinematicBody2D) -> void:
 	_tracker = tracker
@@ -73,6 +76,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("drop") and _blueprint:
 		remove_child(_blueprint)
 		_blueprint = null
+	elif event.is_action_pressed("rotate_blueprint") and _blueprint:
+		_blueprint.rotate_blueprint()
 	elif event.is_action_pressed("quickbar_1"):
 		if _blueprint:
 			remove_child(_blueprint)
@@ -83,6 +88,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if _blueprint:
 			remove_child(_blueprint)
 		_blueprint = Library.Wire
+		add_child(_blueprint)
+		_move_blueprint_in_world(cellv)
+	elif event.is_action_pressed("quickbar_3"):
+		if _blueprint:
+			remove_child(_blueprint)
+		_blueprint = Library.Battery
 		add_child(_blueprint)
 		_move_blueprint_in_world(cellv)
 
